@@ -37,7 +37,7 @@ import threading
 
 from datetime import datetime
 
-class EnhancedSaveNode:
+class FTPSaveNode:
     def __init__(self):
         self.output_dir = folder_paths.get_output_directory()
         self.type = "output"
@@ -132,10 +132,10 @@ class EnhancedSaveNode:
 # A dictionary that contains all nodes you want to export with their names
 # NOTE: names should be globally unique
 NODE_CLASS_MAPPINGS = {
-    "EnhancedSaveNode": EnhancedSaveNode
+    "FTPSaveNode": FTPSaveNode
 }
 
 # A dictionary that contains the friendly/humanly readable titles for the nodes
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "EnhancedSaveNode": "Enhanced Save Node"
+    "FTPSaveNode": "FTP Save Node"
 }
