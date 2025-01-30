@@ -63,7 +63,7 @@ class EnhancedSaveNode:
                 }),
                 "upload": ("BOOLEAN", {"default": True}),
                 "verbose": ("BOOLEAN", {"default": True}),
-                "filename_prefix": ("STRING", {"default": "ComfyUI"})},
+                "filename": ("STRING", {"default": "image.png"})},
             "hidden": {
                 "prompt": "PROMPT", "extra_pnginfo": "EXTRA_PNGINFO"},
             }
@@ -86,10 +86,10 @@ class EnhancedSaveNode:
         if verbose:
             print("File upload success!")
 
-    def save_images(self, images, username, password, url, upload, verbose, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
-        filename_prefix += self.prefix_append
+    def save_images(self, images, username, password, url, upload, verbose, filename="image.png", prompt=None, extra_pnginfo=None):
         
-        full_output_folder, filename, counter, subfolder, filename_prefix = folder_paths.get_save_image_path(filename_prefix, self.output_dir, images[0].shape[1], images[0].shape[0])
+        
+        full_output_folder, filename, counter, subfolder
         results = list()
 
         for image in images:
@@ -104,9 +104,9 @@ class EnhancedSaveNode:
                     for x in extra_pnginfo:
                         metadata.add_text(x, json.dumps(extra_pnginfo[x]))
 
-            # file_name = f"{filename}_{counter:05}_.png"
+            
             now = datetime.now()
-            file_name = f"{filename}_{now.strftime('%Y-%m-%d-%H-%M-%S')}.png"
+            file_name = f"{filename}"
             full_path = os.path.join(full_output_folder, file_name)
             img.save(full_path, pnginfo=metadata, compress_level=self.compress_level)
 
